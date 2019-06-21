@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { HttpService } from './http.service';
 
 @Component({
@@ -6,10 +6,44 @@ import { HttpService } from './http.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Tasks MEAN Project';
 
+  tasks = [];
+  error = null;
+  showTask = {};
+  newTask: any;
+
   constructor(private _httpService: HttpService){
-    
+
   }
+    ngOnInit() {
+      this.getAllTasks()
+    }
+    // index route:----------------
+    getAllTasks() {
+      let observable = this._httpService.getAllTasks()
+
+      observable.subscribe(data => {
+        this.tasks = data["data"];
+        //console.log("TASKS", data.data)    // Can work but not standard in angular/typescript
+      })
+    }
+
+    // Get One Task Route:--------------
+    getOneTask(id: string) {
+      let observable = this._httpService.getOneTask(id)
+      
+      observable.subscribe(data => {
+      this.showTask = data['data'];
+      console.log("Show one Task", this.showTask);
+      });
+    }
+
+    // Delete Task route:
+    // deleteTask(id: string) {
+
+    // }
+    
+    
 }

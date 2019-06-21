@@ -1,19 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-@Injectable() 
+@Injectable({
+  providedIn: 'root'
+})
+
 export class HttpService {
   
   constructor(private _http: HttpClient){
-      this.getTasks();
+    // Testing route:
+    // let id = "5d0aa3690e006757042dfda0";
+    // this.getOneTask(id);
+      // this.getTasks();
   }
 
-  getTasks(){
-    // our http response is an Observable, store it in a variable
-    let tempObservable = this._http.get('/api/tasks');
-    // subscribe to the Observable and provide the code we would like to do with our data from the response
-    tempObservable.subscribe(data => console.log("Got our tasks!", data));
+  getAllTasks() {
+    return this._http.get("/api/tasks");
   }
+
+  getOneTask(id: string) {
+    return this._http.get(`/api/tasks/${id}`);
+  }
+
+  // createTask(newTask) {
+  //   return this._http.post("/api/tasks", newTask);
+  // }
+
+  // updateTask(updatedTask) {
+  //   return this._http.post(`/api/tasks/${updatedTask._id}`, updatedTask);
+  // }
+
+  // deleteTask(id: string) {
+  //   return this._http.post(`/api/tasks/${id}/delete`, {});
+  // }
+
 
 }
 
