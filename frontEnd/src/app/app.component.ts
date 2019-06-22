@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
   }
     ngOnInit() {
       this.getAllTasks()
+      this.newTask = { title: "", description: ""}
     }
     // index route:----------------
     getAllTasks() {
@@ -39,6 +40,17 @@ export class AppComponent implements OnInit {
       console.log("Show one Task", this.showTask);
       });
     }
+
+    // Create New Task Route:
+    createTask(){ 
+      // let observable = this._httpService.createTask(this.newTask);
+      let observable = this._httpService.createTask(this.newTask);
+      observable.subscribe(data => {
+      console.log ("hello TEST", data)
+      this.newTask = { title: "", description: "" }
+    });
+    }
+
 
     // Delete Task route:
     // deleteTask(id: string) {

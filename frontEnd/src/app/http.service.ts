@@ -22,9 +22,9 @@ export class HttpService {
     return this._http.get(`/api/tasks/${id}`);
   }
 
-  // createTask(newTask) {
-  //   return this._http.post("/api/tasks", newTask);
-  // }
+  createTask(newTask) {
+    return this._http.post("/api/tasks/create", newTask);
+  }
 
   // updateTask(updatedTask) {
   //   return this._http.post(`/api/tasks/${updatedTask._id}`, updatedTask);

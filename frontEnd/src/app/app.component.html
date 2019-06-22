@@ -5,8 +5,21 @@
   </h1>
   <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-  
+
+<!-- <button class="btn btn-lg btn-danger marg" (click)="createTask()">Test Create</button> -->
+<div class="border">
+  <form (submit)="createTask()">
+    <p>Content being added: {{ newTask | json }} </p>
+    <h3>Add Task</h3>
+    <p>Title: <input type="text" name="newTask.title" [(ngModel)]="newTask.title" /></p>
+    <p>Description: <input type="text" name="newTask.description" [(ngModel)]="newTask.description" /></p>
+    <p><input class="btn btn-primary" type="submit" value="Create Task" /></p>
+  </form>
+</div>
+  <hr>
 <h1 style="text-align:center">ANGULAR APP!</h1>
+<h2>Preview:</h2>
+
 
 <h1>All Tasks: </h1>
 <div style="border: solid #ff5100;" *ngFor="let task of tasks">
@@ -17,6 +30,7 @@
     <li> Actions: <p><button class="btn btn-primary marg" (click)="getOneTask(task._id)">Show</button><button class="btn btn-primary marg" (click)="updateTask(task._id)">Edit</button> <button class="btn btn-danger marg" (click)="deleteTask(task._id)">Delete</button></p></li>
   </ul>
 </div>
+
 
 
 
