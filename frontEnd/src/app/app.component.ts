@@ -41,21 +41,43 @@ export class AppComponent implements OnInit {
       });
     }
 
-    // Create New Task Route:
-    createTask(){ 
+    // Create New Task Route:---------------
+    createTask() { 
       // let observable = this._httpService.createTask(this.newTask);
       let observable = this._httpService.createTask(this.newTask);
       observable.subscribe(data => {
-      console.log ("hello TEST", data)
       this.newTask = { title: "", description: "" }
+      this.getAllTasks();
     });
     }
 
+    // Update Task Route:-------------------
+    updateTask(id: string) {
+      let observable = this._httpService.updateTask(this.showTask);
+      observable.subscribe(data => {
+        this.showTask = {title: "", description: ""};
+        console.log("Successfully updated!");
 
-    // Delete Task route:
-    // deleteTask(id: string) {
+        // Rediret to root:
+        this.getAllTasks();
+      });
+    }
 
-    // }
-    
+    // Cancel/Reset Route:---------------
+    cancelEdit() {
+      this.showTask = {title: "", description: ""}
+    }
+
+    // Delete Task route: --------------------
+    deleteTask(id: string) {
+      let observable = this._httpService.deleteTask(id);
+      observable.subscribe(data => {
+        this.showTask = {title: "", description: ""};
+        console.log("Successfully Deleted!");
+
+        // Redirect to Root:
+        this.getAllTasks();
+      });
+    }
     
 }

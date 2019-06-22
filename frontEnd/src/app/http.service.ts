@@ -26,13 +26,13 @@ export class HttpService {
     return this._http.post("/api/tasks/create", newTask);
   }
 
-  // updateTask(updatedTask) {
-  //   return this._http.post(`/api/tasks/${updatedTask._id}`, updatedTask);
-  // }
+  updateTask(updatedTask) {
+    return this._http.put(`/api/tasks/${updatedTask._id}`, updatedTask);
+  }
 
-  // deleteTask(id: string) {
-  //   return this._http.post(`/api/tasks/${id}/delete`, {});
-  // }
+  deleteTask(id: string) {
+    return this._http.delete(`/api/tasks/${id}/delete`, {});
+  }
 
 
 }
